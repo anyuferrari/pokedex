@@ -10,6 +10,8 @@
 
 
     <color name="cardBackground">#977070</color>
+    <color name="physicalBackground">#3C3F41</color>
+    <color name="physicalText">@color/white</color>
 
     <color name="fire">#FD0000</color>
     <color name="water">#2196F3</color>

@@ -3,8 +3,8 @@ package com.anyuferrari.pokedex
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
+import com.anyuferrari.pokedex.DetailsPokemonActivity.Companion.PKMN_ID
 import com.anyuferrari.pokedex.adapters.PokemonAdapter
 import com.anyuferrari.pokedex.databinding.ActivityMainBinding
 import com.anyuferrari.pokedex.responses.PokemonDetailsResponse
@@ -21,23 +21,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var retrofit: Retrofit
     private lateinit var adapter: PokemonAdapter
 
-    companion object {
-        const val PKMN_ID = "pkmn_id"
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         retrofit = getRetrofit()
         initUi()
     }
 
     private fun initUi() {
-        adapter = PokemonAdapter {}
         firstOnes()
+        adapter = PokemonAdapter {navigateToDetails(it)}
         binding.rvPkmnCards.setHasFixedSize(true)
         binding.rvPkmnCards.layoutManager = GridLayoutManager(this, 2)
         binding.rvPkmnCards.adapter = adapter
@@ -46,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun firstOnes() {
-        Log.i("miercoles", "aaaa")
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java).getInitialPokemon()
             val responseList: MutableList<PokemonDetailsResponse> = ArrayList()
@@ -80,5 +73,11 @@ class MainActivity : AppCompatActivity() {
             .baseUrl("https://pokeapi.co/api/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    private fun navigateToDetails(pkmnId:String){
+        val intent = Intent(this, DetailsPokemonActivity::class.java)
+        intent.putExtra(PKMN_ID, pkmnId)
+        startActivity(intent)
     }
 }

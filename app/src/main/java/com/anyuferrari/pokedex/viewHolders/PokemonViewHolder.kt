@@ -4,7 +4,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.anyuferrari.pokedex.databinding.ItemPkmnBinding
 import com.anyuferrari.pokedex.responses.PokemonDetailsResponse
-import com.anyuferrari.pokedex.responses.PokemonItemResponse
 import com.squareup.picasso.Picasso
 
 class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -14,7 +13,10 @@ class PokemonViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         pkmDetailsResponse: PokemonDetailsResponse,
         onItemSelected: (String) -> Unit
     ) {
-        binding.tvPkmnName.text = pkmDetailsResponse.name
+        binding.tvPkmnName.text = pkmDetailsResponse.name.replaceFirstChar { it.titlecase() }
         Picasso.get().load(pkmDetailsResponse.sprites.frontUrl).into(binding.ivPkmn)
+        binding.root.setOnClickListener{
+            onItemSelected(pkmDetailsResponse.pkmnId)
+        }
     }
 }
