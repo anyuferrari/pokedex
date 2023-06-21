@@ -14,7 +14,10 @@ data class PokemonItemResponse(
 data class PokemonDetailsResponse(
     @SerializedName("id") val pkmnId: String,
     @SerializedName("name") val name: String,
-    @SerializedName("sprites") val sprites: PokemonSpritesResponse
+    @SerializedName("sprites") val sprites: PokemonSpritesResponse,
+    @SerializedName("height") val height: String,
+    @SerializedName("weight") val weight: String,
+    @SerializedName("types") val types: List<TypesResponse>
 
 )
 
@@ -22,4 +25,12 @@ data class PokemonDetailsResponse(
 data class PokemonSpritesResponse(
     @SerializedName("front_default") val frontUrl: String,
     @SerializedName("back_default") val backUrl: String
+)
+
+data class TypesResponse(
+    @SerializedName("type") val type: Type
+)
+
+data class Type(
+    @SerializedName("name") val typename: String
 )
