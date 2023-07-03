@@ -4,4 +4,15 @@
     <string name="pokemon_sprite_front">Pokemon Sprite Front</string>
     <string name="pokemon_sprite_back">Pokemon sprite back</string>
     <string name="height">Height (dm)</string>
+
+    <string-array name="spinner_items">
+        <item>Generation I</item>
+        <item>Generation II</item>
+        <item>Generation III</item>
+        <item>Generation IV</item>
+        <item>Generation V</item>
+        <item>Generation VI</item>
+        <item>Generation VII</item>
+        <item>Generation VIII</item>
+    </string-array>
 </resources>

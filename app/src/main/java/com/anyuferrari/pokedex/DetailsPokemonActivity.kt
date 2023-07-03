@@ -48,7 +48,6 @@ class DetailsPokemonActivity : AppCompatActivity() {
                         binding.rvTypes.adapter = adapter
                         binding.tvName.text = itemResponse.name.replaceFirstChar { it.titlecase() }
                         val number = String.format("%03d", itemResponse.pkmnId.toInt())
-                        Log.i("lunes", number)
                         binding.tvId.text = number
                         binding.tvHeight.text = itemResponse.height
                         binding.tvWeight.text = itemResponse.weight
