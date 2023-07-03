@@ -47,9 +47,8 @@ class DetailsPokemonActivity : AppCompatActivity() {
                         binding.rvTypes.layoutManager = LinearLayoutManager(cont, LinearLayoutManager.HORIZONTAL, false)
                         binding.rvTypes.adapter = adapter
                         binding.tvName.text = itemResponse.name.replaceFirstChar { it.titlecase() }
-                        val formattedNumber = String.format("%03d", itemResponse.pkmnId.toInt())
-                        Log.i("julio", formattedNumber)
-                        binding.tvId.text = formattedNumber
+                        Log.i("pokemonDetails", itemResponse.name.replaceFirstChar { it.uppercase() })
+                        binding.tvId.text = itemResponse.pkmnId
                         binding.tvHeight.text = itemResponse.height
                         binding.tvWeight.text = itemResponse.weight
                         Picasso.get().load(itemResponse.sprites.frontUrl).into(binding.ivPkmnFront)
