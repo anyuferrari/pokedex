@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface ApiService {
 
-    @GET("pokemon?limit=20&offset=0")
+    @GET("pokemon")
     suspend fun getInitialPokemon(): Response<PokemonDataResponse>
 
     @GET("pokemon/{name}")

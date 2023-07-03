@@ -3,6 +3,8 @@ package com.anyuferrari.pokedex
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.anyuferrari.pokedex.adapters.TypesAdapter
 import com.anyuferrari.pokedex.databinding.ActivityPokemonDetailsBinding
 import com.anyuferrari.pokedex.services.ApiService
 import com.squareup.picasso.Picasso
@@ -33,13 +35,17 @@ class DetailsPokemonActivity : AppCompatActivity() {
     }
 
     private fun initUi(pkmnId: String) {
-        Log.i("pokemonDetails", "initUi $pkmnId")
+        val cont = this
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java).getPokemonDetails(pkmnId)
             if (myResponse.isSuccessful) {
                 val itemResponse = myResponse.body()
                 runOnUiThread {
                     if (itemResponse != null) {
+                        val adapter = TypesAdapter(itemResponse.types)
+                        binding.rvTypes.setHasFixedSize(true)
+                        binding.rvTypes.layoutManager = LinearLayoutManager(cont, LinearLayoutManager.HORIZONTAL, false)
+                        binding.rvTypes.adapter = adapter
                         binding.tvName.text = itemResponse.name.replaceFirstChar { it.titlecase() }
                         Log.i("pokemonDetails", itemResponse.name.replaceFirstChar { it.uppercase() })
                         binding.tvId.text = itemResponse.pkmnId

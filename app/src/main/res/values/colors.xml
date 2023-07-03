@@ -13,11 +13,23 @@
     <color name="physicalBackground">#3C3F41</color>
     <color name="physicalText">@color/white</color>
 
-    <color name="fire">#FD0000</color>
-    <color name="water">#2196F3</color>
-    <color name="grass">#4CAF50</color>
-    <color name="electricity">#FFEB3B</color>
-    <color name="ice">#00BCD4</color>
-    <color name="other">#4600D478</color>
-
+    <color name="bug">#1c4b27</color>
+    <color name="dark">#040707</color>
+    <color name="dragon">#448a95</color>
+    <color name="electric">#e2e32b</color>
+    <color name="fairy">#961a45</color>
+    <color name="fighting">#961a45</color>
+    <color name="fire">#ab1f24</color>
+    <color name="flying">#4a677d</color>
+    <color name="ghost">#33336b</color>
+    <color name="grass">#157e3e</color>
+    <color name="ground">#a8702d</color>
+    <color name="ice">#86d2f5</color>
+    <color name="normal">#75525c</color>
+    <color name="poison">#5e2d89</color>
+    <color name="psychic">#a52a6c</color>
+    <color name="rock">#48190b</color>
+    <color name="steel">#60756e</color>
+    <color name="water">#1552e1</color>
+    <color name="unknown">#000000</color>
 </resources>
