@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
         adapter = PokemonAdapter { navigateToDetails(it) }
         binding.rvPkmnCards.setHasFixedSize(true)
-        binding.rvPkmnCards.layoutManager = GridLayoutManager(this, 2)
+        binding.rvPkmnCards.layoutManager = GridLayoutManager(this, 3)
         binding.rvPkmnCards.adapter = adapter
 
 
