@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java)
                 .getInitialPokemon(limit = "151", offset = "0")
-            val responseList: MutableList<PokemonDetailsResponse> = ArrayList()
+            var responseList: List<PokemonDetailsResponse> = ArrayList()
             if (myResponse.isSuccessful) {
                 val itemResponse = myResponse.body()
                 if (itemResponse != null) {
@@ -73,12 +73,12 @@ class MainActivity : AppCompatActivity() {
                         if (detailsResponse.isSuccessful) {
                             val detResponse = detailsResponse.body()
                             if (detResponse != null) {
-                                responseList.add(detResponse)
+                                responseList = responseList.plus(detResponse)
                             }
                         }
                     }
                     runOnUiThread {
-                        adapter.updateDetails(responseList)
+                        adapter.updateList(responseList)
                         binding.progressBar.isVisible = false
                     }
 
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val myResponse = retrofit.create(ApiService::class.java)
                 .getInitialPokemon(limit = limit, offset = offset)
-            val responseList: MutableList<PokemonDetailsResponse> = ArrayList()
+            var responseList: List<PokemonDetailsResponse> = ArrayList()
             if (myResponse.isSuccessful) {
                 val itemResponse = myResponse.body()
                 if (itemResponse != null) {
@@ -127,12 +127,12 @@ class MainActivity : AppCompatActivity() {
                         if (detailsResponse.isSuccessful) {
                             val detResponse = detailsResponse.body()
                             if (detResponse != null) {
-                                responseList.add(detResponse)
+                                responseList = responseList.plus(detResponse)
                             }
                         }
                     }
                     runOnUiThread {
-                        adapter.updateDetails(responseList)
+                        adapter.updateList(responseList)
                         binding.progressBar.isVisible = false
                         binding.glPkmn.isVisible = true
                     }

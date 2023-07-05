@@ -2,8 +2,10 @@ package com.anyuferrari.pokedex.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.anyuferrari.pokedex.R
+import com.anyuferrari.pokedex.diffUtils.PokemonDIffUtil
 import com.anyuferrari.pokedex.responses.PokemonDetailsResponse
 import com.anyuferrari.pokedex.viewHolders.PokemonViewHolder
 
@@ -12,9 +14,15 @@ class PokemonAdapter(
     private val onItemSelected: (String) -> Unit
 ) : RecyclerView.Adapter<PokemonViewHolder>() {
 
+    fun updateList(newList: List<PokemonDetailsResponse>){
+        val pkmnDiff = PokemonDIffUtil(pkmnDetailsList, newList)
+        val result = DiffUtil.calculateDiff(pkmnDiff)
+        pkmnDetailsList = newList
+        result.dispatchUpdatesTo(this)
+    }
     fun updateDetails(pkmnDetailsList: List<PokemonDetailsResponse>) {
         this.pkmnDetailsList = pkmnDetailsList
-        notifyDataSetChanged()
+        updateList(pkmnDetailsList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
